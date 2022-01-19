@@ -1,15 +1,14 @@
 import {PLATFORM} from 'aurelia-pal';
-
+import moment from '../node_modules/moment/moment';
 export class App {
-  message = 'Hello World!';
+  message = `Hello World! It is the year ${moment().format('YYYY')}`; //back ticks for expressions inside of text 
   configureRouter(config, router) {
     this.router = router;
     config.title = 'Aurelia';
     config.map([
-      { route: ['', 'home'],       name: 'home',       moduleId: PLATFORM.moduleName('index') },
-      { route: 'users',            name: 'users',      moduleId: 'users/index', nav: true, title: 'Users' },
-      { route: 'users/:id/detail', name: 'userDetail', moduleId: 'users/detail' },
-      { route: 'files/*path',      name: 'files',      moduleId: 'files/index', nav: 0,    title: 'Files', href:'#files' }
+      { route: ['', 'home'], name: 'home', moduleId: PLATFORM.moduleName('index'), title:'Home' },
+      { route: 'about', name: 'about', moduleId: PLATFORM.moduleName('about'), title:'About Us' },
+      { route: 'post/:slug', name: 'post', moduleId: PLATFORM.moduleName('post'), title:'View Post' }, //: to pass variable on link
     ]);
   }
 }
